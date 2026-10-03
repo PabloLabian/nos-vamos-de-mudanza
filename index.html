@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#ffffff;
+  color-scheme:light;
+  --paper:#fbf6ec;
   --ink:#000000;
   --soft:#5c5c5c;
   --pink:#ff3e9a;
@@ -19,30 +20,18 @@
   --kraft-dark:#a97a45;
   --tape:rgba(240,228,200,.85);
   --line:#000000;
-  --dot:#e9e9e9;
+  --dot:#ece4d4;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:#1a1a1a; --ink:#ffffff; --soft:#b5b5b5; --pink:#ff5aa8; --pink-soft:#4a2335;
-    --yellow:#a8901a; --kraft:#8e6a40; --kraft-dark:#6f5230; --tape:rgba(230,215,180,.55);
-    --line:#ffffff; --dot:#2a2a2a;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#1a1a1a; --ink:#ffffff; --soft:#b5b5b5; --pink:#ff5aa8; --pink-soft:#4a2335;
-  --yellow:#a8901a; --kraft:#8e6a40; --kraft-dark:#6f5230; --tape:rgba(230,215,180,.55);
-  --line:#ffffff; --dot:#2a2a2a;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{
   margin:0;
   background-color:var(--paper);
-  background-image:radial-gradient(var(--dot) 1.2px, transparent 1.2px);
-  background-size:22px 22px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cpath d='M30 40l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z' fill='%23ff3e9a' opacity='.55'/%3E%3Ccircle cx='190' cy='30' r='6' fill='%23ffd23f' opacity='.8'/%3E%3Cpath d='M110 120c8-10 16 10 24 0s16 10 24 0' fill='none' stroke='%2312b76a' stroke-width='4' stroke-linecap='round' opacity='.5'/%3E%3Cpath d='M220 150l12 20h-24z' fill='%237c5cff' opacity='.45'/%3E%3Cpath d='M50 200h16M58 192v16' stroke='%23ff6b1a' stroke-width='4' stroke-linecap='round' opacity='.6'/%3E%3Ccircle cx='150' cy='225' r='4' fill='%231fa3d6' opacity='.6'/%3E%3Ccircle cx='80' cy='100' r='3' fill='%23ff3e9a' opacity='.5'/%3E%3Cpath d='M240 80c-6 6 6 12 0 18' fill='none' stroke='%23ffb800' stroke-width='4' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E"), radial-gradient(var(--dot) 1.2px, transparent 1.2px);
+  background-size:260px 260px, 22px 22px;
   color:var(--ink);
   font-family:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   font-size:1.0625rem;
@@ -101,7 +90,9 @@ body{
 .sticker b{font-size:1.9rem;font-weight:400}
 .sticker span{font-size:.8rem}
 .mood{
-  font-weight:800; font-size:1.125rem; margin:0 0 2.5rem;
+  display:inline-block; font-weight:800; font-size:1.125rem; margin:0 0 2.5rem;
+  background:#fff; border:2.5px solid #000; border-radius:999px; padding:.45rem 1.1rem;
+  box-shadow:3px 3px 0 #1fa3d6; transform:rotate(-1deg);
 }
 .mood mark{background:var(--yellow);color:inherit;padding:0 .25rem}
 
@@ -126,19 +117,29 @@ body{
 .nota .firma{text-align:right;font-weight:700;margin:0}
 
 /* SECCIONES */
-section{margin:0 0 2.75rem}
+section{
+  --acc:var(--pink); --soft-bg:#ffe0ee; --mk:#fff27a;
+  margin:0 0 2.5rem; padding:1.4rem 1.25rem 1.3rem;
+  background:var(--soft-bg);
+  border:2.5px solid #000; border-radius:6px;
+  box-shadow:6px 6px 0 var(--acc);
+  transform:rotate(-.5deg);
+}
+section:nth-child(even){transform:rotate(.6deg)}
+section:nth-child(3n){border-radius:18px 6px 14px 6px}
+section h2{margin-top:0}
 section h2{
   font-family:"Permanent Marker", cursive; font-weight:400;
   font-size:clamp(1.55rem, 5.5vw, 2rem); line-height:1.15;
   margin:0 0 .35rem;
 }
 section h2 .tape{
-  background:linear-gradient(transparent 55%, var(--pink-soft) 55% 92%, transparent 92%);
+  background:linear-gradient(transparent 58%, #fff 58% 92%, transparent 92%);
   padding:0 .15rem;
 }
-.intro{margin:0 0 1rem;color:var(--soft);font-weight:600}
+.intro{margin:0 0 1rem;color:#333;font-weight:600}
 
-ul.items{list-style:none;margin:0;padding:0;border-top:2px solid var(--line)}
+ul.items{list-style:none;margin:0;padding:0;border-top:3px solid var(--acc)}
 ul.items li{
   display:grid; grid-template-columns:auto 1fr auto; gap:.85rem; align-items:start;
   padding:.8rem 0; border-bottom:2px dashed var(--line);
@@ -148,40 +149,41 @@ ul.items li{
   width:28px;height:28px;margin-top:.05rem;
   border:2.5px solid var(--line); border-radius:3px;
   display:grid; place-items:center; cursor:pointer;
-  background:var(--paper);
+  background:#fff;
   transform:rotate(-3deg);
   transition:transform .12s ease;
 }
 li:nth-child(even) .box-tick{transform:rotate(2.5deg)}
+.box-tick{color:var(--acc)}
 .box-tick svg{width:22px;height:22px;opacity:0;transform:scale(.4);transition:opacity .15s, transform .15s}
 .chk:checked + .box-tick svg{opacity:1;transform:scale(1)}
 .chk:focus-visible + .box-tick{outline:3px solid var(--pink);outline-offset:3px}
 .txt{cursor:pointer}
 .txt strong{font-weight:600;display:block}
-.txt small{display:block;color:var(--soft);font-size:.9rem;margin-top:.15rem}
+.txt small{display:block;color:#4a4a4a;font-size:.9rem;margin-top:.15rem}
 li.done .txt strong{
-  text-decoration:line-through; text-decoration-color:var(--pink); text-decoration-thickness:3px;
-  background:linear-gradient(transparent 50%, var(--yellow) 50% 90%, transparent 90%);
+  text-decoration:line-through; text-decoration-color:var(--acc); text-decoration-thickness:3px;
+  background:linear-gradient(transparent 50%, var(--mk) 50% 90%, transparent 90%);
 }
 li.done .txt small{opacity:.6}
 .quitar{
-  background:none;border:0;color:var(--soft);font:inherit;font-size:.85rem;
+  background:none;border:0;color:#4a4a4a;font:inherit;font-size:.85rem;
   cursor:pointer;padding:.2rem .3rem;text-decoration:underline;
 }
-.quitar:hover{color:var(--pink)}
+.quitar:hover{color:var(--acc)}
 .quitar:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
 
 /* AÑADIR */
 .add{margin-top:.9rem}
 .add-btn{
   font-family:"Permanent Marker", cursive; font-size:1.05rem;
-  background:var(--paper); color:var(--ink);
-  border:2.5px solid var(--line); border-radius:999px;
+  background:#fff; color:#000;
+  border:2.5px solid #000; border-radius:999px;
   padding:.35rem 1rem; cursor:pointer;
-  box-shadow:3px 3px 0 var(--pink);
+  box-shadow:3px 3px 0 var(--acc);
 }
-.add-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--pink)}
-.add-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--pink)}
+.add-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--acc)}
+.add-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--acc)}
 .add-btn:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
 .add-form{display:none;gap:.5rem;flex-wrap:wrap;align-items:center}
 .add.open .add-form{display:flex}
@@ -189,18 +191,18 @@ li.done .txt small{opacity:.6}
 .add-form input{
   flex:1 1 220px; font:inherit; font-weight:600;
   padding:.55rem .75rem; border:2.5px solid var(--line); border-radius:4px;
-  background:var(--paper); color:var(--ink);
+  background:#fff; color:#000;
 }
 .add-form input:focus{outline:3px solid var(--pink);outline-offset:1px}
 .add-form button{
   font:inherit;font-weight:800;cursor:pointer;
   padding:.55rem .9rem;border:2.5px solid var(--line);border-radius:4px;
 }
-.add-form .ok{background:var(--pink);color:#000}
-.add-form .no{background:var(--paper);color:var(--ink)}
+.add-form .ok{background:var(--acc);color:#000}
+.add-form .no{background:#fff;color:#000}
 
 footer{
-  margin-top:3.5rem; padding-top:1.5rem; border-top:3px solid var(--line);
+  margin-top:3.5rem; padding-top:1.5rem; border-top:4px dotted #ff3e9a;
 }
 footer p{font-family:"Permanent Marker", cursive;font-size:1.4rem;line-height:1.25;margin:0 0 1rem}
 .reset{background:none;border:0;color:var(--soft);font:inherit;font-size:.9rem;text-decoration:underline;cursor:pointer;padding:0}
@@ -310,10 +312,18 @@ const SECTIONS = [
   ]}
 ];
 
+const PALETTE = [
+  {acc:"#ff3e9a", bg:"#ffe0ee", mk:"#fff27a"},
+  {acc:"#f0a500", bg:"#fff1bf", mk:"#ffffff"},
+  {acc:"#12b76a", bg:"#d5f6e6", mk:"#fff27a"},
+  {acc:"#7c5cff", bg:"#ebe4ff", mk:"#fff27a"},
+  {acc:"#ff6b1a", bg:"#ffe3cf", mk:"#fff27a"},
+  {acc:"#1fa3d6", bg:"#d9f2fb", mk:"#fff27a"}
+];
 let state = {checked:{}, extra:{}};
 let saveFn = null;
 
-const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13.5c2.5 1.8 4.2 3.8 5.6 6.2C11 13 15.5 7.6 21.5 3.5" fill="none" stroke="#ff3e9a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13.5c2.5 1.8 4.2 3.8 5.6 6.2C11 13 15.5 7.6 21.5 3.5" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 function esc(s){return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 
@@ -324,8 +334,8 @@ function allItems(sec){
 
 function buildSkeleton(){
   const main = document.getElementById("lists");
-  main.innerHTML = SECTIONS.map(sec => `
-    <section id="sec-${sec.id}">
+  main.innerHTML = SECTIONS.map((sec, i) => { const c = PALETTE[i % PALETTE.length]; return `
+    <section id="sec-${sec.id}" style="--acc:${c.acc};--soft-bg:${c.bg};--mk:${c.mk}">
       <h2><span class="tape">${esc(sec.title)}</span></h2>
       <p class="intro">${esc(sec.intro)}</p>
       <ul class="items" data-sec="${sec.id}"></ul>
@@ -337,7 +347,7 @@ function buildSkeleton(){
           <button type="button" class="no">Ya está</button>
         </div>
       </div>
-    </section>`).join("");
+    </section>`; }).join("");
 }
 
 function render(){
