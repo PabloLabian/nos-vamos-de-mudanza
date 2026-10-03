@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nos vamos de mudanza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff;
+  --ink:#000000;
+  --soft:#5c5c5c;
+  --pink:#ff3e9a;
+  --pink-soft:#ffd3e6;
+  --yellow:#ffe14d;
+  --kraft:#c99a62;
+  --kraft-dark:#a97a45;
+  --tape:rgba(240,228,200,.85);
+  --line:#000000;
+  --dot:#e9e9e9;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1a1a1a; --ink:#ffffff; --soft:#b5b5b5; --pink:#ff5aa8; --pink-soft:#4a2335;
+    --yellow:#a8901a; --kraft:#8e6a40; --kraft-dark:#6f5230; --tape:rgba(230,215,180,.55);
+    --line:#ffffff; --dot:#2a2a2a;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1a1a1a; --ink:#ffffff; --soft:#b5b5b5; --pink:#ff5aa8; --pink-soft:#4a2335;
+  --yellow:#a8901a; --kraft:#8e6a40; --kraft-dark:#6f5230; --tape:rgba(230,215,180,.55);
+  --line:#ffffff; --dot:#2a2a2a;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;
+  background-color:var(--paper);
+  background-image:radial-gradient(var(--dot) 1.2px, transparent 1.2px);
+  background-size:22px 22px;
+  color:var(--ink);
+  font-family:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  font-size:1.0625rem;
+  line-height:1.5;
+}
+.wrap{max-width:680px;margin:0 auto;padding:2rem 1.25rem 4rem}
+
+/* LA CAJA */
+.box{
+  position:relative;
+  background:var(--kraft);
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 3px, rgba(0,0,0,.035) 3px 4px),
+    linear-gradient(180deg, transparent 48%, var(--kraft-dark) 48% 49%, transparent 49%);
+  border:3px solid #000;
+  border-radius:4px;
+  padding:3.25rem 1.5rem 2rem;
+  margin:1rem 0 3rem;
+  transform:rotate(-1deg);
+  box-shadow:8px 8px 0 #000;
+  color:#000;
+}
+.box::before{ /* precinto */
+  content:"";
+  position:absolute; left:-12px; right:-12px; top:1.1rem; height:34px;
+  background:var(--tape);
+  transform:rotate(1.2deg);
+  border-top:1px solid rgba(0,0,0,.08); border-bottom:1px solid rgba(0,0,0,.08);
+}
+.box h1{
+  font-family:"Permanent Marker", "Comic Sans MS", cursive;
+  font-weight:400;
+  font-size:clamp(2.4rem, 9vw, 4rem);
+  line-height:1;
+  margin:0 0 1rem;
+  position:relative;
+}
+.box p{margin:0;font-size:1.125rem;max-width:30ch;font-weight:600;position:relative}
+.box .fragil{
+  position:absolute; right:1rem; bottom:1rem;
+  font-family:"Permanent Marker", cursive; font-size:.95rem;
+  color:#b3001b; border:2px solid #b3001b; padding:.1rem .5rem; transform:rotate(-8deg);
+  opacity:.85;
+}
+.sticker{
+  position:absolute; right:-10px; top:-26px;
+  width:118px; height:118px; border-radius:50%;
+  background:var(--pink); color:#000;
+  border:3px solid #000;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; transform:rotate(9deg);
+  font-family:"Permanent Marker", cursive; line-height:1.05;
+  box-shadow:3px 3px 0 #000;
+  z-index:2;
+}
+.sticker b{font-size:1.9rem;font-weight:400}
+.sticker span{font-size:.8rem}
+.mood{
+  font-weight:800; font-size:1.125rem; margin:-1.5rem 0 2.5rem;
+}
+.mood mark{background:var(--yellow);color:inherit;padding:0 .25rem}
+
+/* SECCIONES */
+section{margin:0 0 2.75rem}
+section h2{
+  font-family:"Permanent Marker", cursive; font-weight:400;
+  font-size:clamp(1.55rem, 5.5vw, 2rem); line-height:1.15;
+  margin:0 0 .35rem;
+}
+section h2 .tape{
+  background:linear-gradient(transparent 55%, var(--pink-soft) 55% 92%, transparent 92%);
+  padding:0 .15rem;
+}
+.intro{margin:0 0 1rem;color:var(--soft);font-weight:600}
+
+ul.items{list-style:none;margin:0;padding:0;border-top:2px solid var(--line)}
+ul.items li{
+  display:grid; grid-template-columns:auto 1fr auto; gap:.85rem; align-items:start;
+  padding:.8rem 0; border-bottom:2px dashed var(--line);
+}
+.chk{position:absolute;opacity:0;width:1px;height:1px}
+.box-tick{
+  width:28px;height:28px;margin-top:.05rem;
+  border:2.5px solid var(--line); border-radius:3px;
+  display:grid; place-items:center; cursor:pointer;
+  background:var(--paper);
+  transform:rotate(-3deg);
+  transition:transform .12s ease;
+}
+li:nth-child(even) .box-tick{transform:rotate(2.5deg)}
+.box-tick svg{width:22px;height:22px;opacity:0;transform:scale(.4);transition:opacity .15s, transform .15s}
+.chk:checked + .box-tick svg{opacity:1;transform:scale(1)}
+.chk:focus-visible + .box-tick{outline:3px solid var(--pink);outline-offset:3px}
+.txt{cursor:pointer}
+.txt strong{font-weight:600;display:block}
+.txt small{display:block;color:var(--soft);font-size:.9rem;margin-top:.15rem}
+li.done .txt strong{
+  text-decoration:line-through; text-decoration-color:var(--pink); text-decoration-thickness:3px;
+  background:linear-gradient(transparent 50%, var(--yellow) 50% 90%, transparent 90%);
+}
+li.done .txt small{opacity:.6}
+.quitar{
+  background:none;border:0;color:var(--soft);font:inherit;font-size:.85rem;
+  cursor:pointer;padding:.2rem .3rem;text-decoration:underline;
+}
+.quitar:hover{color:var(--pink)}
+.quitar:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+
+/* AÑADIR */
+.add{margin-top:.9rem}
+.add-btn{
+  font-family:"Permanent Marker", cursive; font-size:1.05rem;
+  background:var(--paper); color:var(--ink);
+  border:2.5px solid var(--line); border-radius:999px;
+  padding:.35rem 1rem; cursor:pointer;
+  box-shadow:3px 3px 0 var(--pink);
+}
+.add-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--pink)}
+.add-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--pink)}
+.add-btn:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.add-form{display:none;gap:.5rem;flex-wrap:wrap;align-items:center}
+.add.open .add-form{display:flex}
+.add.open .add-btn{display:none}
+.add-form input{
+  flex:1 1 220px; font:inherit; font-weight:600;
+  padding:.55rem .75rem; border:2.5px solid var(--line); border-radius:4px;
+  background:var(--paper); color:var(--ink);
+}
+.add-form input:focus{outline:3px solid var(--pink);outline-offset:1px}
+.add-form button{
+  font:inherit;font-weight:800;cursor:pointer;
+  padding:.55rem .9rem;border:2.5px solid var(--line);border-radius:4px;
+}
+.add-form .ok{background:var(--pink);color:#000}
+.add-form .no{background:var(--paper);color:var(--ink)}
+
+footer{
+  margin-top:3.5rem; padding-top:1.5rem; border-top:3px solid var(--line);
+}
+footer p{font-family:"Permanent Marker", cursive;font-size:1.4rem;line-height:1.25;margin:0 0 1rem}
+.reset{background:none;border:0;color:var(--soft);font:inherit;font-size:.9rem;text-decoration:underline;cursor:pointer;padding:0}
+.sync{font-size:.8rem;color:var(--soft);margin-top:.5rem}
+
+@media (max-width:480px){
+  .sticker{width:96px;height:96px;right:-6px;top:-30px}
+  .sticker b{font-size:1.5rem}
+  .box{padding-top:3.5rem}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="box">
+    <div class="sticker" aria-live="polite"><b id="count">0/0</b><span>tachadas</span></div>
+    <h1>Me mudo, pero no del todo</h1>
+    <p>Lo que se queda en el piso para no acabar acampando en el salón.</p>
+    <span class="fragil" aria-hidden="true">NO SE LLEVA</span>
+  </header>
+
+  <p class="mood" id="mood"></p>
+
+  <main id="lists"></main>
+
+  <footer>
+    <p>Si has llegado aquí con todo tachado, te mereces una caña. O tres.</p>
+    <button class="reset" id="reset" type="button">Desmarcar todo y empezar de cero</button>
+    <div class="sync" id="sync"></div>
+  </footer>
+</div>
+
+<script>
+const SECTIONS = [
+  {id:"regla", title:"Regla número uno: lo que no se marca, desaparece", intro:"Los de la mudanza no leen mentes. Leen carteles. Y a veces ni eso.", items:[
+    {id:"r1", t:"Una habitación o un armario con cartel de NO SE LLEVA", n:"Grande. Más grande. Que se vea desde el portal."},
+    {id:"r2", t:"Avisar al encargado el primer día", n:"Y el segundo. Y el tercero, aunque suenes a disco rayado."},
+    {id:"r3", t:"El kit en maletas, no en cajas", n:"Una caja es una caja y las cajas acaban en el camión."}
+  ]},
+  {id:"suministros", title:"Suministros: ni los toques", intro:"Cortar la luz antes de tiempo es de valientes. O de inconscientes.", items:[
+    {id:"s1", t:"Luz, agua y gas activos hasta el último día", n:"Ducharse con agua fría no te hace más fuerte. Te hace más borde."},
+    {id:"s2", t:"Cuadrar la fecha del traslado de la fibra", n:"Cuando la instalan en la casa nueva, el piso se queda sin wifi y tú sin paciencia."}
+  ]},
+  {id:"trabajo", title:"Trabajo, que las facturas no se pagan con ilusión", intro:"La mudanza no te da vacaciones. Te da más curro.", items:[
+    {id:"t1", t:"Portátil y cargadores"},
+    {id:"t2", t:"Regleta y alargador", n:"Nunca hay un enchufe donde lo necesitas. Nunca."},
+    {id:"t3", t:"Auriculares y el equipo de cada día"},
+    {id:"t4", t:"Mesa plegable y una silla", n:"Trabajar en el suelo tiene gracia diez minutos. Luego habla tu espalda."},
+    {id:"t5", t:"El router, si es del operador, hasta el traslado"}
+  ]},
+  {id:"dormir", title:"Dormir (si os quedáis a pasar la noche)", intro:"Para dormir mal ya tienes los nervios de la mudanza.", items:[
+    {id:"d1", t:"La cama para el segundo viaje o un colchón hinchable", n:"Comprueba que no pierde aire. Despertar en el suelo no es un plan."},
+    {id:"d2", t:"Sábanas y almohadas"},
+    {id:"d3", t:"Manta o nórdico"}
+  ]},
+  {id:"bano", title:"Baño: lo justo para no dar pena", intro:"Nadie te va a ver, pero tú sí te ves.", items:[
+    {id:"b1", t:"Dos toallas"},
+    {id:"b2", t:"Papel higiénico", n:"No es negociable. Si hace falta, lo apuntas dos veces."},
+    {id:"b3", t:"Gel, champú, cepillos de dientes y desodorante"},
+    {id:"b4", t:"Secador"},
+    {id:"b5", t:"Medicación"}
+  ]},
+  {id:"cocina", title:"Cocina de supervivencia", intro:"Aquí no se cocina. Aquí se sobrevive.", items:[
+    {id:"c1", t:"Cafetera y café", n:"Sin café no hay mudanza. Hay víctimas."},
+    {id:"c2", t:"Dos tazas, dos platos, dos vasos y cubiertos"},
+    {id:"c3", t:"Una sartén o un cazo y un cuchillo"},
+    {id:"c4", t:"Lavavajillas y una bayeta"},
+    {id:"c5", t:"Bolsas de basura"},
+    {id:"c6", t:"Agua y algo que no caduque", n:"Para lo demás está la comida a domicilio. Sin remordimientos."}
+  ]},
+  {id:"ropa", title:"Ropa", intro:"Ni armario cápsula ni historias. Lo que te vas a poner.", items:[
+    {id:"o1", t:"Una maleta por cabeza con ropa para esos días"},
+    {id:"o2", t:"Un cargador de móvil por persona", n:"Compartir cargador ha roto más parejas que las vacaciones."}
+  ]},
+  {id:"limpieza", title:"Limpieza final", intro:"La que te devuelve la fianza (si es de alquiler) o, como mínimo, la dignidad.", items:[
+    {id:"l1", t:"Escoba, recogedor, fregona y cubo"},
+    {id:"l2", t:"Productos, guantes y estropajo"},
+    {id:"l3", t:"Bolsas", n:"Muchas. Más de las que crees."}
+  ]},
+  {id:"herramientas", title:"Herramientas por si las moscas", intro:"Siempre hay un tornillo que se resiste el último día.", items:[
+    {id:"h1", t:"Destornillador y cúter"},
+    {id:"h2", t:"Cinta americana", n:"Arregla el 90 % de los problemas. El otro 10 % no tiene arreglo."},
+    {id:"h3", t:"Bombillas de repuesto"}
+  ]},
+  {id:"contigo", title:"Esto va contigo, en tu coche y a tu lado", intro:"Ni camión, ni caja, ni \u00abya si eso\u00bb.", items:[
+    {id:"v1", t:"DNI, escrituras, papeles de la hipoteca y contratos"},
+    {id:"v2", t:"Las llaves de las dos casas"},
+    {id:"v3", t:"Ordenadores y discos con trabajo"},
+    {id:"v4", t:"Joyas y dinero"}
+  ]},
+  {id:"ultimo", title:"El último día", intro:"Respira. Ya casi.", items:[
+    {id:"u1", t:"Foto a los contadores de luz, agua y gas", n:"Con la lectura bien visible. Luego no vale llorar."},
+    {id:"u2", t:"Repaso a armarios, cajones, trastero y tendedero", n:"Siempre aparece un calcetín. Siempre."},
+    {id:"u3", t:"Lo que quede del kit, al coche"},
+    {id:"u4", t:"Cerrar, dar las llaves y largarse", n:"Sin llorar. Bueno, llorar un poquito sí vale."}
+  ]}
+];
+
+let state = {checked:{}, extra:{}};
+let saveFn = null;
+
+const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13.5c2.5 1.8 4.2 3.8 5.6 6.2C11 13 15.5 7.6 21.5 3.5" fill="none" stroke="#ff3e9a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+function esc(s){return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+function allItems(sec){
+  const extra = (state.extra && state.extra[sec.id]) || [];
+  return sec.items.map(i => ({...i, custom:false})).concat(extra.map(i => ({...i, custom:true})));
+}
+
+function buildSkeleton(){
+  const main = document.getElementById("lists");
+  main.innerHTML = SECTIONS.map(sec => `
+    <section id="sec-${sec.id}">
+      <h2><span class="tape">${esc(sec.title)}</span></h2>
+      <p class="intro">${esc(sec.intro)}</p>
+      <ul class="items" data-sec="${sec.id}"></ul>
+      <div class="add" data-sec="${sec.id}">
+        <button type="button" class="add-btn">+ Otra movida</button>
+        <div class="add-form">
+          <input type="text" maxlength="120" placeholder="¿Qué se nos ha olvidado?" aria-label="Nueva cosa para ${esc(sec.title)}">
+          <button type="button" class="ok">Apuntar</button>
+          <button type="button" class="no">Ya está</button>
+        </div>
+      </div>
+    </section>`).join("");
+}
+
+function render(){
+  let total = 0, done = 0;
+  SECTIONS.forEach(sec => {
+    const ul = document.querySelector(`ul[data-sec="${sec.id}"]`);
+    const items = allItems(sec);
+    ul.innerHTML = items.map(it => {
+      const on = !!state.checked[it.id];
+      total++; if(on) done++;
+      const uid = "c-" + it.id;
+      return `<li class="${on ? "done" : ""}">
+        <input class="chk" type="checkbox" id="${uid}" data-id="${it.id}" ${on ? "checked" : ""}>
+        <label class="box-tick" for="${uid}">${TICK}</label>
+        <label class="txt" for="${uid}"><strong>${esc(it.t)}</strong>${it.n ? `<small>${esc(it.n)}</small>` : ""}</label>
+        ${it.custom ? `<button type="button" class="quitar" data-sec="${sec.id}" data-del="${it.id}" aria-label="Quitar ${esc(it.t)}">quitar</button>` : "<span></span>"}
+      </li>`;
+    }).join("");
+  });
+  document.getElementById("count").textContent = done + "/" + total;
+  const pct = total ? done / total : 0;
+  let m;
+  if(done === 0) m = "Ni has empezado. Normal, nadie quiere empezar.";
+  else if(pct < .5) m = "Vas. Despacito, pero vas.";
+  else if(pct < 1) m = "Ya queda menos. No te vengas abajo ahora.";
+  else m = "<mark>Todo tachado.</mark> Ahora sí puedes quejarte con razón.";
+  document.getElementById("mood").innerHTML = m;
+}
+
+function commit(){
+  render();
+  if(saveFn) saveFn(state);
+}
+
+document.addEventListener("change", e => {
+  const c = e.target.closest(".chk");
+  if(!c) return;
+  const checked = {...state.checked};
+  if(c.checked) checked[c.dataset.id] = true; else delete checked[c.dataset.id];
+  state = {...state, checked};
+  commit();
+});
+
+document.addEventListener("click", e => {
+  const add = e.target.closest(".add");
+  if(e.target.closest(".add-btn")){
+    add.classList.add("open");
+    add.querySelector("input").focus();
+    return;
+  }
+  if(e.target.closest(".add-form .ok")){ addItem(add); return; }
+  if(e.target.closest(".add-form .no")){
+    add.classList.remove("open");
+    add.querySelector("input").value = "";
+    add.querySelector(".add-btn").focus();
+    return;
+  }
+  const del = e.target.closest(".quitar");
+  if(del){
+    const sec = del.dataset.sec, id = del.dataset.del;
+    const extra = {...state.extra, [sec]:(state.extra[sec] || []).filter(i => i.id !== id)};
+    const checked = {...state.checked}; delete checked[id];
+    state = {...state, extra, checked};
+    commit();
+    return;
+  }
+  if(e.target.id === "reset"){
+    if(confirm("¿Desmarcar todo? Lo que habéis añadido se queda.")){
+      state = {...state, checked:{}};
+      commit();
+    }
+  }
+});
+
+document.addEventListener("keydown", e => {
+  if(!e.target.matches(".add-form input")) return;
+  const add = e.target.closest(".add");
+  if(e.key === "Enter"){ e.preventDefault(); addItem(add); }
+  if(e.key === "Escape"){ add.querySelector(".no").click(); }
+});
+
+function addItem(add){
+  const input = add.querySelector("input");
+  const t = input.value.trim();
+  if(!t){ input.focus(); return; }
+  const sec = add.dataset.sec;
+  const item = {id:"x" + Date.now().toString(36) + Math.random().toString(36).slice(2,5), t};
+  const extra = {...state.extra, [sec]:[...(state.extra[sec] || []), item]};
+  state = {...state, extra};
+  input.value = "";
+  input.focus();
+  commit();
+}
+
+function normalize(d){
+  return {checked:(d && d.checked) || {}, extra:(d && d.extra) || {}};
+}
+
+/* Guardado local de reserva */
+function useLocal(){
+  try{ const raw = localStorage.getItem("kit-mudanza"); if(raw) state = normalize(JSON.parse(raw)); }catch(e){}
+  saveFn = s => { try{ localStorage.setItem("kit-mudanza", JSON.stringify(s)); }catch(e){} };
+  document.getElementById("sync").textContent = "Se guarda solo en este navegador.";
+  render();
+}
+
+buildSkeleton();
+useLocal();
+
+/* Guardado compartido si el visor lo permite */
+(async () => {
+  if(!window.claude || !window.claude.use) return;
+  let db = null;
+  try{ db = await window.claude.use("db"); }catch(e){ db = null; }
+  if(!db) return;
+  const ref = db.doc("kit/estado");
+  let chain = Promise.resolve();
+  let first = true;
+  saveFn = s => {
+    const snapshot = JSON.parse(JSON.stringify(s));
+    chain = chain.then(() => ref.set(snapshot)).catch(() => {
+      document.getElementById("sync").textContent = "No se ha podido guardar el último cambio. Recarga y vuelve a probar.";
+    });
+  };
+  document.getElementById("sync").textContent = "Se guarda solo y lo veis los dos.";
+  ref.onSnapshot(snap => {
+    if(snap.exists){
+      state = normalize(JSON.parse(JSON.stringify(snap.data())));
+    } else if(first){
+      saveFn(state); /* sube lo que hubiera en local */
+    }
+    first = false;
+    render();
+  }, () => {
+    document.getElementById("sync").textContent = "Se ha perdido la conexión. Recarga la página.";
+  });
+})();
+</script>
+</body>
+</html>
